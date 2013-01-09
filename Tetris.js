@@ -192,6 +192,16 @@ var now = (new Date).getTime();
     }
     ctx.restore();
   };
+  
+  gameboard.drawScore = function (ctx) {
+    ctx.save();
+     ctx.font = "bold 11px Arial";
+     ctx.shadowBlur = 1;
+     ctx.shadowColor = "black";
+     ctx.fillStyle = 'rgba(180,180,255,0.9)';
+     ctx.fillText(this.eliminatedLines * 10, 5, 15);
+    ctx.restore();
+  };
 
   gameboard.play = function () {
     var clonedPiece = clone(this.piece);
@@ -254,7 +264,7 @@ var now = (new Date).getTime();
     if (this.fullrow > -1) {
       this.shiftDownPile(this.fullrow);
       this.eliminatedLines++;
-      if (this.eliminatedLines%5 == 0) this.fallingFactor--;
+      if (this.eliminatedLines % 10 == 0) this.fallingFactor--;
       this.setState(this.findFullRow);
     } else {
       this.piece = this.nextpiece;
@@ -264,7 +274,7 @@ var now = (new Date).getTime();
         this.smallpiece = clone(this.nextpiece);
         this.smallpiece.tileWidth = 7;
         this.smallpiece.tileHeight = 7;
-        this.smallpiece.col = 1;
+        this.smallpiece.col = 2*(this.cols-2);
         this.smallpiece.row = 0;
       this.setState(this.play);
     }
@@ -318,6 +328,7 @@ var now = (new Date).getTime();
         gameboard.drawPile(ctx);
         if (gameboard.piece) gameboard.piece.draw(ctx);
         if (gameboard.smallpiece) gameboard.smallpiece.draw(ctx);
+        gameboard.drawScore(ctx);
       }
     }, dt);
   return arguments.callee;
