@@ -174,7 +174,7 @@ var now = (new Date).getTime();
   };
 
   gameboard.shiftDownPile = function (row) {
-    for (var last=row; last>0; last--) {
+    for (var last=row; last>=-4; last--) {
       this.pile[last] = clone(this.pile[last-1]);
     }
   };
@@ -282,7 +282,7 @@ var now = (new Date).getTime();
 
   gameboard.clearPile = function () {
     this.pile = [];
-    for (var row = -4; row < this.rows + 4; row++) {
+    for (var row = -5; row < this.rows + 4; row++) {
       this.pile[row]= [];
       for (var col = -4; col < this.cols + 4; col++) {
         this.pile[row][col] = 0;
@@ -292,7 +292,7 @@ var now = (new Date).getTime();
     for (var col = 0; col < this.cols; col++) {
       this.pile[this.rows][col] = 1;
     }
-    for (var row = 0; row < this.rows; row++) {
+    for (var row = -5; row < this.rows; row++) {
       this.pile[row][-1] = 1;
       this.pile[row][this.cols] = 1;
     }
