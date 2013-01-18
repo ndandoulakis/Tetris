@@ -198,7 +198,7 @@ var now = (new Date).getTime();
      ctx.font = "bold 11px Arial";
      ctx.shadowBlur = 1;
      ctx.shadowColor = "black";
-     ctx.fillStyle = 'rgba(180,180,255,0.9)';
+     ctx.fillStyle = 'rgba(210,210,100,0.9)';
      ctx.fillText(this.eliminatedLines * 10, 5, 15);
     ctx.restore();
   };
