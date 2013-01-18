@@ -264,7 +264,9 @@ var now = (new Date).getTime();
     if (this.fullrow > -1) {
       this.shiftDownPile(this.fullrow);
       this.eliminatedLines++;
-      if (this.eliminatedLines % 10 == 0) this.fallingFactor--;
+      if (this.eliminatedLines % 10 == 0 && this.fallingFactor > 6) {
+        this.fallingFactor--;
+      }
       this.setState(this.findFullRow);
     } else {
       this.piece = this.nextpiece;
